@@ -95,6 +95,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun sendEmail() {
         try {
+            // 먼저 Gmail 앱으로 시도
+            if (tryGmailApp()) {
+                return
+            }
+            
+            // Gmail 앱이 없으면 일반 이메일 앱으로 시도
             val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:")
                 putExtra(Intent.EXTRA_EMAIL, arrayOf("haeseoky@gmail.com"))
@@ -105,10 +111,51 @@ class MainActivity : AppCompatActivity() {
             if (emailIntent.resolveActivity(packageManager) != null) {
                 startActivity(Intent.createChooser(emailIntent, "이메일 앱 선택"))
             } else {
-                Toast.makeText(this, "이메일 앱이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show()
+                // 이메일 앱이 없으면 웹 Gmail로 시도
+                openWebGmail()
             }
         } catch (e: Exception) {
             Toast.makeText(this, "이메일 전송 중 오류가 발생했습니다: ${e.message}", Toast.LENGTH_LONG).show()
+        }
+    }
+    
+    private fun tryGmailApp(): Boolean {
+        return try {
+            val gmailIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                setPackage("com.google.android.gm")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("haeseoky@gmail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, "Jun 앱에서 보낸 메일")
+                putExtra(Intent.EXTRA_TEXT, "안녕하세요!\n\nJun 앱을 통해 메일을 보냅니다.\n\n감사합니다.")
+            }
+            
+            if (gmailIntent.resolveActivity(packageManager) != null) {
+                startActivity(gmailIntent)
+                true
+            } else {
+                false
+            }
+        } catch (e: Exception) {
+            false
+        }
+    }
+    
+    private fun openWebGmail() {
+        try {
+            val subject = Uri.encode("Jun 앱에서 보낸 메일")
+            val body = Uri.encode("안녕하세요!\n\nJun 앱을 통해 메일을 보냅니다.\n\n감사합니다.")
+            val gmailUrl = "https://mail.google.com/mail/?view=cm&to=haeseoky@gmail.com&su=$subject&body=$body"
+            
+            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(gmailUrl))
+            
+            if (webIntent.resolveActivity(packageManager) != null) {
+                startActivity(webIntent)
+                Toast.makeText(this, "웹 브라우저에서 Gmail을 열었습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "이메일을 보낼 수 있는 앱이 없습니다. Play 스토어에서 Gmail을 설치해주세요.", Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "웹 Gmail 열기 실패: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
