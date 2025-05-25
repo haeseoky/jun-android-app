@@ -16,4 +16,10 @@
     <string name="permission_gallery_denied">갤러리 기능을 사용하려면 권한이 필요합니다.</string>
     <string name="permission_gallery_required">갤러리에 접근하려면 저장소 권한이 필요합니다.</string>
     <string name="permission_settings_guide">설정에서 권한을 허용해주세요.</string>
-</resources></string>
+    
+    <!-- 앱 종료 확인 다이얼로그 -->
+    <string name="app_exit_title">앱 종료</string>
+    <string name="app_exit_message">정말로 앱을 종료하시겠습니까?</string>
+    <string name="app_exit_confirm">종료</string>
+    <string name="app_exit_cancel">취소</string>
+</resources>
