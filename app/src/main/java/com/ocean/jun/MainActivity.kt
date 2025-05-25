@@ -1,5 +1,7 @@
 package com.ocean.jun
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
@@ -34,19 +36,8 @@ class MainActivity : AppCompatActivity() {
         setupBackPressHandler()
 
         binding.appBarMain.fab.setOnClickListener { view ->
-            // 갤러리 접근 권한 체크 예시
-            if (PermissionUtils.hasStoragePermissions(this)) {
-                Snackbar.make(view, "갤러리 권한이 있습니다. 갤러리 기능을 사용할 수 있습니다.", Snackbar.LENGTH_LONG)
-                    .setAction("확인", null)
-                    .setAnchorView(R.id.fab).show()
-            } else {
-                Snackbar.make(view, getString(R.string.permission_gallery_required), Snackbar.LENGTH_LONG)
-                    .setAction("설정", null)
-                    .setAnchorView(R.id.fab).show()
-                
-                // 권한 상태 로그 출력 (디버깅용)
-                Toast.makeText(this, PermissionUtils.getPermissionStatus(this), Toast.LENGTH_SHORT).show()
-            }
+            // 이메일 작성 기능
+            sendEmail()
         }
         
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -100,6 +91,25 @@ class MainActivity : AppCompatActivity() {
             }
             .setCancelable(true)
             .show()
+    }
+
+    private fun sendEmail() {
+        try {
+            val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("haeseoky@gmail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, "Jun 앱에서 보낸 메일")
+                putExtra(Intent.EXTRA_TEXT, "안녕하세요!\n\nJun 앱을 통해 메일을 보냅니다.\n\n감사합니다.")
+            }
+            
+            if (emailIntent.resolveActivity(packageManager) != null) {
+                startActivity(Intent.createChooser(emailIntent, "이메일 앱 선택"))
+            } else {
+                Toast.makeText(this, "이메일 앱이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "이메일 전송 중 오류가 발생했습니다: ${e.message}", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
