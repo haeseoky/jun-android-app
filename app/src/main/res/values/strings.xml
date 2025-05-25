@@ -10,4 +10,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-</resources>
+    
+    <!-- 권한 관련 문자열 -->
+    <string name="permission_gallery_granted">갤러리 접근 권한이 허용되었습니다.</string>
+    <string name="permission_gallery_denied">갤러리 기능을 사용하려면 권한이 필요합니다.</string>
+    <string name="permission_gallery_required">갤러리에 접근하려면 저장소 권한이 필요합니다.</string>
+    <string name="permission_settings_guide">설정에서 권한을 허용해주세요.</string>
+</resources></string>

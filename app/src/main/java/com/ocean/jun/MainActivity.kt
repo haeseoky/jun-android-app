@@ -2,6 +2,7 @@ package com.ocean.jun
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.ocean.jun.databinding.ActivityMainBinding
+import com.ocean.jun.utils.PermissionUtils
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,10 +29,21 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
+            // 갤러리 접근 권한 체크 예시
+            if (PermissionUtils.hasStoragePermissions(this)) {
+                Snackbar.make(view, "갤러리 권한이 있습니다. 갤러리 기능을 사용할 수 있습니다.", Snackbar.LENGTH_LONG)
+                    .setAction("확인", null)
+                    .setAnchorView(R.id.fab).show()
+            } else {
+                Snackbar.make(view, getString(R.string.permission_gallery_required), Snackbar.LENGTH_LONG)
+                    .setAction("설정", null)
+                    .setAnchorView(R.id.fab).show()
+                
+                // 권한 상태 로그 출력 (디버깅용)
+                Toast.makeText(this, PermissionUtils.getPermissionStatus(this), Toast.LENGTH_SHORT).show()
+            }
         }
+        
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)

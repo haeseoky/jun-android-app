@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Pastel Color Palette -->
-    <color name="pastel_pink">#FFE1F1F5</color>
-    <color name="pastel_lavender">#FFE6E1FF</color>
-    <color name="pastel_mint">#FFE1F5E6</color>
-    <color name="pastel_peach">#FFFFEEE1</color>
-    <color name="pastel_sky">#FFE1F0FF</color>
-    <color name="pastel_rose">#FFFFE1F0</color>
+    <!-- Improved Pastel Color Palette -->
+    <color name="pastel_pink">#FFF0F5</color>
+    <color name="pastel_lavender">#F5F0FF</color>
+    <color name="pastel_mint">#F0FFF5</color>
+    <color name="pastel_peach">#FFF8F0</color>
+    <color name="pastel_sky">#F0F8FF</color>
+    <color name="pastel_rose">#FFF0F8</color>
     
-    <!-- Primary Colors -->
-    <color name="primary_light">#FFA8E6CF</color>
-    <color name="primary_main">#FF88C999</color>
-    <color name="primary_dark">#FF6BB77B</color>
+    <!-- Primary Colors with better contrast -->
+    <color name="primary_light">#7CC7A8</color>
+    <color name="primary_main">#5FB77B</color>
+    <color name="primary_dark">#4A9B63</color>
     
-    <!-- Secondary Colors -->
-    <color name="secondary_light">#FFB8A9FF</color>
-    <color name="secondary_main">#FF9A8AFF</color>
-    <color name="secondary_dark">#FF7C6BFF</color>
+    <!-- Secondary Colors with better contrast -->
+    <color name="secondary_light">#A395FF</color>
+    <color name="secondary_main">#8A7AFF</color>
+    <color name="secondary_dark">#6B5FFF</color>
     
     <!-- Background Colors -->
-    <color name="background_light">#FFFAF8FF</color>
-    <color name="background_main">#FFF5F3FF</color>
-    <color name="surface_light">#FFFFFFFF</color>
+    <color name="background_light">#FAFAFA</color>
+    <color name="background_main">#F5F5F5</color>
+    <color name="surface_light">#FFFFFF</color>
     
     <!-- Text Colors -->
-    <color name="text_primary">#FF5A5A5A</color>
-    <color name="text_secondary">#FF8A8A8A</color>
-    <color name="text_on_primary">#FFFFFFFF</color>
+    <color name="text_primary">#424242</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_on_primary">#FFFFFF</color>
     
-    <!-- Accent Colors -->
-    <color name="accent_coral">#FFFFB3B3</color>
-    <color name="accent_yellow">#FFFFEB9C</color>
-    <color name="accent_blue">#FFB3D9FF</color>
+    <!-- Accent Colors with better visibility -->
+    <color name="accent_coral">#FFB3BA</color>
+    <color name="accent_yellow">#FFFACD</color>
+    <color name="accent_blue">#BAEAFF</color>
     
     <!-- Standard Colors -->
     <color name="black">#FF000000</color>

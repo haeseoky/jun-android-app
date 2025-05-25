@@ -7,13 +7,33 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.ocean.jun.utils.PermissionUtils
 
 class SplashActivity : AppCompatActivity() {
     
     private val splashTimeOut: Long = 3000 // 3초
+    private var permissionGranted = false
+    
+    // 권한 요청을 위한 ActivityResultLauncher
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        permissionGranted = permissions.values.all { it }
+        
+        if (permissionGranted) {
+            Toast.makeText(this, getString(R.string.permission_gallery_granted), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, getString(R.string.permission_gallery_denied), Toast.LENGTH_LONG).show()
+        }
+        
+        // 권한 요청 완료 후 MainActivity로 이동
+        proceedToMainActivity()
+    }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +49,32 @@ class SplashActivity : AppCompatActivity() {
         // 애니메이션 효과 시작
         startAnimations()
         
-        // 3초 후 MainActivity로 전환
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            // 부드러운 전환 애니메이션
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-            finish() // SplashActivity 종료
-        }, splashTimeOut)
+        // 권한 체크 및 요청
+        checkAndRequestPermissions()
+    }
+    
+    private fun checkAndRequestPermissions() {
+        if (PermissionUtils.hasStoragePermissions(this)) {
+            // 이미 권한이 있는 경우
+            permissionGranted = true
+            Handler(Looper.getMainLooper()).postDelayed({
+                proceedToMainActivity()
+            }, splashTimeOut)
+        } else {
+            // 권한이 없는 경우 - 애니메이션 완료 후 권한 요청
+            Handler(Looper.getMainLooper()).postDelayed({
+                val permissions = PermissionUtils.getStoragePermissions()
+                requestPermissionLauncher.launch(permissions)
+            }, 1500) // 애니메이션이 어느정도 진행된 후 권한 요청
+        }
+    }
+    
+    private fun proceedToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        // 부드러운 전환 애니메이션
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        finish() // SplashActivity 종료
     }
     
     private fun startAnimations() {

@@ -11,46 +11,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <!-- Header Section -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
             app:cardBackgroundColor="@color/pastel_lavender">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp"
+                android:padding="20dp"
                 android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🎬"
-                    android:textSize="48sp"
-                    android:layout_marginBottom="16dp" />
+                    android:textSize="36sp"
+                    android:layout_marginBottom="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="슬라이드쇼"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="8dp" />
 
                 <TextView
                     android:id="@+id/text_slideshow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/text_secondary"
                     android:lineSpacingMultiplier="1.3" />
 
@@ -62,22 +62,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
             app:cardBackgroundColor="@color/surface_light">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="20dp"
+                android:padding="16dp"
                 android:gravity="center_vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="📸"
-                    android:textSize="32sp"
+                    android:textSize="24sp"
                     android:layout_marginEnd="16dp" />
 
                 <LinearLayout
@@ -90,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="사진 슬라이드"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"
                         android:layout_marginBottom="4dp" />
@@ -99,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="멋진 사진들을 슬라이드로 감상하세요"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:textColor="@color/text_secondary" />
 
                 </LinearLayout>
@@ -109,23 +109,23 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
             app:cardBackgroundColor="@color/surface_light">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="20dp"
+                android:padding="16dp"
                 android:gravity="center_vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🎵"
-                    android:textSize="32sp"
+                    android:textSize="24sp"
                     android:layout_marginEnd="16dp" />
 
                 <LinearLayout
@@ -138,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="배경음악"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"
                         android:layout_marginBottom="4dp" />
@@ -147,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="좋아하는 음악과 함께 슬라이드쇼를 즐기세요"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:textColor="@color/text_secondary" />
 
                 </LinearLayout>
@@ -159,34 +159,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="20dp">
+            android:weightSum="2">
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="10dp"
                 android:text="재생"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:background="@drawable/rounded_button_primary"
+                android:backgroundTint="@color/primary_main"
                 android:textColor="@color/text_on_primary"
-                app:cornerRadius="28dp"
-                app:elevation="4dp" />
+                app:cornerRadius="12dp"
+                app:elevation="2dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="10dp"
                 android:text="설정"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:background="@drawable/rounded_button_secondary"
+                android:backgroundTint="@color/secondary_main"
                 android:textColor="@color/text_on_primary"
-                app:cornerRadius="28dp"
-                app:elevation="4dp" />
+                app:cornerRadius="12dp"
+                app:elevation="2dp" />
 
         </LinearLayout>
 
